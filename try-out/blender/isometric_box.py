@@ -50,7 +50,7 @@ cube.data.materials.append(mat)
 bpy.ops.object.camera_add(location=(0, 0, 0))
 cam = bpy.context.active_object
 cam.data.type = 'ORTHO'
-cam.data.ortho_scale = 2.5
+cam.data.ortho_scale = math.sqrt(2)  # 1タイル(1×1 BU)がぴったり128pxに: tile_side × √2
 cam.rotation_euler = (math.radians(60), 0, math.radians(45))
 
 # Compute camera position: place it so it looks at the object center
