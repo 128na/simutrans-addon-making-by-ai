@@ -1,0 +1,12 @@
+[submodule "simutrans"]
+	path = simutrans
+	url = https://github.com/128na/simutrans.git
+[submodule "simutrans-dat-parser"]
+	path = simutrans-dat-parser
+	url = https://github.com/128na/simutrans-dat-parser.git
+[submodule "simutrans-image-merger"]
+	path = simutrans-image-merger
+	url = https://github.com/128na/simutrans-image-merger.git
+[submodule "simutrans-image-util"]
+	path = simutrans-image-util
+	url = https://github.com/128na/simutrans-image-util.git
