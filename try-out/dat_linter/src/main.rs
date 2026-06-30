@@ -2,6 +2,7 @@ mod diagnostics;
 mod formatter;
 mod parser;
 mod rules;
+mod vehicle;
 
 use diagnostics::Severity;
 use parser::DatFile;
@@ -14,6 +15,10 @@ fn main() -> ExitCode {
     if !args.is_empty() && args[0] == "fmt" {
         args.remove(0);
         return run_fmt(&args);
+    }
+    if !args.is_empty() && args[0] == "couplings" {
+        args.remove(0);
+        return run_couplings(&args);
     }
     if !args.is_empty() && args[0] == "lint" {
         args.remove(0);
@@ -138,4 +143,37 @@ fn run_fmt(args: &[String]) -> ExitCode {
     }
 
     ExitCode::SUCCESS
+}
+
+/// 静的解析(PHPStan的な層)のPoC: 1ディレクトリ内の vehicle dat 群を読み込み、
+/// (1) makeobjが検証しないconstraint参照の実在性、(2) 連結制約の充足可能性
+/// （有限な編成として絶対に成立しない車両が無いか）を検査する。
+fn run_couplings(args: &[String]) -> ExitCode {
+    let Some(dir_arg) = args.first() else {
+        eprintln!("usage: dat_linter couplings <path/to/vehicle_dat_dir>");
+        return ExitCode::FAILURE;
+    };
+    let dir = Path::new(dir_arg);
+
+    let (vehicles, mut diags) = vehicle::load_vehicles(dir);
+    diags.extend(vehicle::check_dangling_refs(&vehicles));
+    diags.extend(vehicle::check_satisfiability(&vehicles));
+
+    println!("{}: {} 台の vehicle dat を読み込みました", dir.display(), vehicles.len());
+    for d in &diags {
+        println!("{}: {d}", dir.display());
+    }
+
+    let error_count = diags.iter().filter(|d| d.severity == Severity::Error).count();
+    if error_count == 0 {
+        println!("{}: OK（既知ルールの範囲では問題なし）", dir.display());
+    } else {
+        println!("{}: error {error_count} 件", dir.display());
+    }
+
+    if error_count > 0 {
+        ExitCode::FAILURE
+    } else {
+        ExitCode::SUCCESS
+    }
 }

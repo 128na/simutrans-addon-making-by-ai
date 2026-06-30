@@ -43,8 +43,11 @@ pakセット作成（全タイプのアドオンが作成できる状態）
 - [ ] 車両方向マッピングのキャリブレーション工程をスクリプト化（手作業の往復を削減）
 
 ### 長期（別フェーズ）
-- [x] **linter / 静的解析（PoC）** — `try-out/dat_linter/`（Rust）で `obj=building` のみ対応完了
-  - 必須フィールド・値域・type×waytype 組み合わせ妥当性の検証を
-    building_writer.cc 等のソースを精読して実装した
-  - [ ] `vehicle`/`way` など他obj種別への展開
+- [x] **formatter / linter / 静的解析（PoC）** — `try-out/dat_linter/`（Rust）
+  - formatter (`dat_linter fmt`): キー正規化・並び替え。`obj=building`非依存の汎用実装
+  - linter (`dat_linter`): `obj=building`の`type=extension`/`stop`/`depot`系のみ対応完了
+  - 静的解析 (`dat_linter couplings`): vehicle dat の連結制約(`constraint[prev/next]`)
+    充足可能性解析のPoC完了
+  - [ ] `vehicle`本体（building以外）/`way` など他obj種別のlinter対応
+  - [ ] 静的解析: 連結制約以外のランタイム依存問題（speed=0等）はランタイムコード調査から要着手
   - [ ] OSS公開に向けた `cargo test` 化・CI整備

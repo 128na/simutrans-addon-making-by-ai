@@ -1,0 +1,16 @@
+obj=vehicle
+name=Wagon
+waytype=track
+engine_type=electric
+speed=100
+power=0
+weight=10
+cost=500
+runningcost=5
+maintenance=5
+intro_year=2000
+freight=Passagiere
+payload=20
+length=8
+constraint[prev][0]=Loco
+constraint[next][0]=none
