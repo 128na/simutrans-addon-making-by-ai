@@ -6,3 +6,4 @@ refs/
 
 # ビルド成果物
 *.pak
+target/

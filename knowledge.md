@@ -146,6 +146,28 @@ length=8                    # 車両長(1-24)
   先端付近まで太さを保ちながら丸く収束する「団子鼻」形状になる。色帯はオブジェクトを
   分けずに、面の重心Z座標で`material_index`を出し分けることでテーパーに自動追従させられる
 
+## dat linter（静的解析）
+
+`try-out/dat_linter/`（Rust製PoC）で `obj=building` を対象に実装。
+makeobjのソース（`building_writer.cc`/`get_waytype.cc`/`tabfile.cc`）を読むと
+分かる「サイレントに失敗する」パターンが存在する:
+
+- `cursor`と`icon`が両方とも空文字 → `cursorskin_writer_t`の呼び出し自体が
+  スキップされ（`if (!c.empty() || !i.empty())`）、エラーなしでビルドメニューに表示されない
+- タイル(`[layout][y][x]`)に`frontimage`/`backimage`が1枚もない →
+  `phases=0`のままエラーなしで書き込まれ、そのタイルが空画像になる
+- `frontimage`の高さ`h>0`は`dbg->error`止まり（fatalでない）→ 見逃されやすい
+- `type=extension`で`waytype`未指定は「全waytypeに適合する汎用拡張」として
+  正当に解釈される（仕様通りだが意図せずこうなりがち）
+
+逆に`type`の不正値・obsolete keyword・`Dims`の`size=0`・`type=stop/depot`での
+`waytype`欠落は makeobj 自身が`dbg->fatal`で止めるため非サイレントだが、
+Blenderレンダリングを含むフルパイプラインを回さず一瞬で検出できる価値がある。
+
+tabfileのキーは大文字小文字を区別しない（`tabfile.cc`の`format_key()`で
+パース時に小文字化される）ため、dat内で`Dims`/`BackImage`のように
+大文字を混ぜても問題ない。
+
 ## 自作ツール（サブモジュール）
 | リポジトリ | 言語 | 役割 |
 |---|---|---|

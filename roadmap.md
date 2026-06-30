@@ -43,7 +43,8 @@ pakセット作成（全タイプのアドオンが作成できる状態）
 - [ ] 車両方向マッピングのキャリブレーション工程をスクリプト化（手作業の往復を削減）
 
 ### 長期（別フェーズ）
-- [ ] **linter / 静的解析**
-  - makeobj はパラメーター不足・矛盾をほぼ無視して pak 生成する
+- [x] **linter / 静的解析（PoC）** — `try-out/dat_linter/`（Rust）で `obj=building` のみ対応完了
   - 必須フィールド・値域・type×waytype 組み合わせ妥当性の検証を
-    building_writer.cc 等のソースを精読して実装する
+    building_writer.cc 等のソースを精読して実装した
+  - [ ] `vehicle`/`way` など他obj種別への展開
+  - [ ] OSS公開に向けた `cargo test` 化・CI整備

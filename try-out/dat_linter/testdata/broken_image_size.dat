@@ -1,0 +1,16 @@
+obj=building
+name=test_broken_image_size
+type=extension
+waytype=track
+enables_pax=1
+level=4
+NoInfo=1
+Dims=1,1,4
+
+cursor=bad_size.png.0.0
+icon=bad_size.png.0.0
+
+BackImage[0][0][0][0][0]=station_cube.png.0.0
+BackImage[1][0][0][0][0]=station_cube.png.0.0
+BackImage[2][0][0][0][0]=station_cube.png.0.0
+BackImage[3][0][0][0][0]=station_cube.png.0.0
