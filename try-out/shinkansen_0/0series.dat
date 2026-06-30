@@ -1,0 +1,33 @@
+obj=vehicle
+name=shinkansen_0_front
+
+waytype=track
+engine_type=electric
+speed=210
+power=11840
+weight=81
+axle_load=12
+cost=3000
+runningcost=30
+maintenance=50
+intro_year=1964
+retire_year=2000
+freight=Passagiere
+payload=56
+length=8
+
+# 画像: emptyimage[方向] = 車両が空の場合の方向別画像
+# 方向コード: s, w, sw, se, n, e, ne, nw (vehicle_writer.cc dir_codes 準拠)
+#
+# 実機8方向テストで確定(2026-06-30): N/Sはそのまま正しいが、
+# E/W, NE/NW, SE/SWがペアで入れ替わっている(東西軸の鏡映)。
+# レンダーのZ回転番号で言うと: n->Z0(不変) s->Z180(不変)
+# e->Z270 w->Z90 ne->Z315 nw->Z45 se->Z225 sw->Z135
+emptyimage[n]=0series_n.png.0.0
+emptyimage[ne]=0series_nw.png.0.0
+emptyimage[e]=0series_w.png.0.0
+emptyimage[se]=0series_sw.png.0.0
+emptyimage[s]=0series_s.png.0.0
+emptyimage[sw]=0series_se.png.0.0
+emptyimage[w]=0series_e.png.0.0
+emptyimage[nw]=0series_ne.png.0.0

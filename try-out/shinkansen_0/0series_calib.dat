@@ -1,0 +1,28 @@
+obj=vehicle
+name=shinkansen_0_calib
+
+waytype=track
+engine_type=electric
+speed=210
+power=11840
+weight=81
+axle_load=12
+cost=3000
+runningcost=30
+maintenance=50
+intro_year=1964
+retire_year=2000
+freight=Passagiere
+payload=56
+length=8
+
+# キャリブレーション用: 各方向にZ回転角ラベル付き画像をそのまま割り当てる
+# ゲーム内でどの方向に走らせた時にどのラベル(Z0/Z45/...)が表示されるか確認するための仮datです
+emptyimage[n]=calib_0series_n.png.0.0
+emptyimage[ne]=calib_0series_ne.png.0.0
+emptyimage[e]=calib_0series_e.png.0.0
+emptyimage[se]=calib_0series_se.png.0.0
+emptyimage[s]=calib_0series_s.png.0.0
+emptyimage[sw]=calib_0series_sw.png.0.0
+emptyimage[w]=calib_0series_w.png.0.0
+emptyimage[nw]=calib_0series_nw.png.0.0
