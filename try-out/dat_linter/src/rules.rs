@@ -2,9 +2,19 @@ use crate::diagnostics::Diagnostic;
 use crate::parser::DatFile;
 use std::path::Path;
 
-// type/waytype の既知一覧は makeobj の動作をミラーしている。
-// type: simutrans/src/simutrans/descriptor/writer/building_writer.cc write_obj()
-// waytype: simutrans/src/simutrans/descriptor/writer/get_waytype.cc
+// type/waytype の既知一覧およびこのファイルの検証ロジック（cursor/icon省略時の
+// スキップ、タイル画像欠落時のphases=0、frontimageのh>0、Dims size=0 fatal等）は
+// makeobjの building_writer.cc / get_waytype.cc をソースとして直接ミラーしている。
+//
+// 検証済み:
+// - vanilla simutrans: このリポジトリの `simutrans` submodule, commit 1d2799f9a7 (2026-01-16)
+// - OTRP (Simutrans-Extended系フォーク, https://github.com/teamhimeh/simutrans),
+//   commit d6d3a5795b (2026-07-01時点のdefaultブランチ) で同等ファイルを diff した結果、
+//   building dat の検証に関わるロジックは両者で完全に一致していた
+//   （差分はnode書き込みのバイナリフォーマット詳細のみで、dat記述者から見える挙動は同一）
+//
+// どちらかの本体が更新され、上記コミット以降にtype/waytype一覧やcursor/icon・
+// タイル画像のロジックが変わった場合はこの定数表を再検証すること。
 const KNOWN_TYPES: &[&str] = &[
     "res", "com", "ind", "cur", "mon", "tow", "hq", "habour", "harbour", "dock", "fac", "stop",
     "extension", "depot", "any", "",
@@ -173,10 +183,10 @@ fn check_cursor_icon(dat: &DatFile, dat_dir: &Path, diags: &mut Vec<Diagnostic>)
     }
 
     if !icon.is_empty() {
-        check_image_ref(icon, dat_dir, "icon", true, diags);
+        check_image_ref(icon, dat_dir, "icon", diags);
     }
     if !cursor.is_empty() {
-        check_image_ref(cursor, dat_dir, "cursor", true, diags);
+        check_image_ref(cursor, dat_dir, "cursor", diags);
     }
 }
 
@@ -223,10 +233,10 @@ fn check_tile_images(
                         format!("layout {l} tile ({x},{y})"),
                     ));
                     if let Some(v) = front {
-                        check_image_ref(v, dat_dir, &format!("frontimage[{l}][{y}][{x}]"), false, diags);
+                        check_image_ref(v, dat_dir, &format!("frontimage[{l}][{y}][{x}]"), diags);
                     }
                     if let Some(v) = back {
-                        check_image_ref(v, dat_dir, &format!("backimage[{l}][{y}][{x}]"), false, diags);
+                        check_image_ref(v, dat_dir, &format!("backimage[{l}][{y}][{x}]"), diags);
                     }
                 }
             }
@@ -250,13 +260,7 @@ fn check_tile_images(
     }
 }
 
-fn check_image_ref(
-    value: &str,
-    dat_dir: &Path,
-    context: &str,
-    check_alpha_corner: bool,
-    diags: &mut Vec<Diagnostic>,
-) {
+fn check_image_ref(value: &str, dat_dir: &Path, context: &str, diags: &mut Vec<Diagnostic>) {
     let base = value.split(',').next().unwrap_or(value);
     let parts: Vec<&str> = base.split('.').collect();
     let filename = if parts.len() >= 2
@@ -282,30 +286,16 @@ fn check_image_ref(
         return;
     }
 
+    // image_writer.cc: "if ((width%img_size!=0)||(height%img_size!=0)) dbg->fatal(...,\"Size not divisible by %d.\")"
     match image::open(&path) {
         Ok(img) => {
             let (w, h) = (img.width(), img.height());
-            let mut ok = true;
             if w % 128 != 0 || h % 128 != 0 {
-                ok = false;
                 diags.push(Diagnostic::error(
                     "image-size-not-multiple-of-128",
                     format!("{context}: {filename} のサイズが {w}x{h} です。makeobj pak128 は128の倍数でないとエラーになります"),
                 ));
-            }
-            if check_alpha_corner {
-                let rgba = img.to_rgba8();
-                if let Some(px) = rgba.get_pixel_checked(0, 0) {
-                    if px[3] == 0 {
-                        ok = false;
-                        diags.push(Diagnostic::warning(
-                            "transparent-corner-pixel",
-                            format!("{context}: {filename} の左上(0,0)ピクセルが透過です。ゲームがアイコンを認識しない場合があります"),
-                        ));
-                    }
-                }
-            }
-            if ok {
+            } else {
                 diags.push(Diagnostic::info(
                     "image-ok",
                     format!("{context}: {filename} {w}x{h}"),

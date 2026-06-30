@@ -168,6 +168,31 @@ tabfileのキーは大文字小文字を区別しない（`tabfile.cc`の`format
 パース時に小文字化される）ため、dat内で`Dims`/`BackImage`のように
 大文字を混ぜても問題ない。
 
+画像サイズ「128の倍数必須」は`image_writer.cc`で確認済み:
+`if ((width%img_size!=0)||(height%img_size!=0)) dbg->fatal(...,"Size not divisible by %d.")`
+（`img_size`はpak128指定時128になる）。
+
+**未確認ルール（要根拠調査）**: 「icon/cursor画像の左上(0,0)ピクセルが透過だと
+ゲームが認識しない」という station_test 実験時の経験則は、`simutrans`サブモジュール
+全体を検索しても該当ロジックが見つからなかった（makeobj側にもクライアント側にも
+左上ピクセルを特別扱いする箇所がない）。当時の本当の原因が別だった可能性があり、
+dat_linterの検証ルールからは一旦除外した。再現条件を切り分けてから復活させること。
+
+**OTRP（Simutrans-Extended系フォーク, teamhimeh/simutrans）との関係**:
+dat_linterの`KNOWN_TYPES`等の定数は本リポジトリの`simutrans`サブモジュール
+（vanilla、コミット`1d2799f9a7`時点）からの書き写しであり、自動追従の仕組みはない。
+OTRP（https://github.com/teamhimeh/simutrans, コミット`d6d3a5795b`時点、
+2026-07-01に確認）の`building_writer.cc`/`get_waytype.cc`/`tabfile.cc`相当を
+実際にcloneしてdiffした結果、**building dat の検証に関わるロジックは
+vanillaと完全一致**だった（type/waytype一覧、cursor/icon省略時の挙動、タイル
+画像欠落時の挙動、Dims size=0判定、画像サイズ128の倍数判定、キーの大文字小文字
+非区別）。差分はnode書き込みのバイナリフォーマット詳細（バージョン番号・
+write_uint16のオフセット指定方式など）のみで、dat記述者から見える挙動には影響しない。
+そのため現状のdat_linterのルールはOTRP向けdatにもそのまま使える。
+ただしOTRP独自のobjタイプ・フィールド（斜め線路駅設置など、
+https://github.com/teamhimeh/simutrans/wiki/OTRP-Home 参照）には未対応。
+本体・OTRPいずれかが更新されたら再diffが必要（自動追従の仕組みはまだない）。
+
 ## 自作ツール（サブモジュール）
 | リポジトリ | 言語 | 役割 |
 |---|---|---|
