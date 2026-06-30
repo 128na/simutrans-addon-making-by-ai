@@ -45,12 +45,15 @@ makeobj VERBOSE DEBUG pak128 output.pak input.dat
 
 1. `try-out/<実験名>/` ディレクトリを作成
 2. Blender スクリプト・dat・PNG など成果物をそのディレクトリに置く
-3. 実験が完了したら `try-out/<実験名>/memo.md` を作成
+3. 実験が完了したら `try-out/<実験名>/README.md` を作成
+   （GitHub上でディレクトリを開いた時に自動表示されるよう `memo.md` でなく `README.md` とする）
 
-### memo.md フォーマット
+### README.md フォーマット
 
 ```markdown
 # <実験タイトル>
+
+作業日: YYYY-MM-DD（複数日にまたがる場合は YYYY-MM-DD〜YYYY-MM-DD）
 
 ## 目標
 <何を確認したかったか>
@@ -68,7 +71,7 @@ makeobj VERBOSE DEBUG pak128 output.pak input.dat
 ## リポジトリ構成
 
 ```
-try-out/          実験ディレクトリ（各実験に memo.md）
+try-out/          実験ディレクトリ（各実験に README.md）
   blender/        Blenderレンダリング PoC
   station_test/   pak128 駅拡張建物フルパイプライン検証
 knowledge.md      技術知見（カメラ仕様・dat制約・Blenderノート）
