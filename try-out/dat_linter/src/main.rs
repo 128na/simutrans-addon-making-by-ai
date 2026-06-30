@@ -8,11 +8,22 @@ use std::path::Path;
 use std::process::ExitCode;
 
 fn main() -> ExitCode {
-    let mut args = std::env::args().skip(1);
-    let Some(path_arg) = args.next() else {
-        eprintln!("usage: dat_linter <path/to/file.dat>");
+    let mut path_arg: Option<String> = None;
+    let mut verbosity: u8 = 0;
+    for arg in std::env::args().skip(1) {
+        match arg.as_str() {
+            // -v: info まで表示 / -vv: debug まで表示
+            "-v" | "--verbose" => verbosity = verbosity.max(1),
+            "-vv" => verbosity = verbosity.max(2),
+            other => path_arg = Some(other.to_string()),
+        }
+    }
+
+    let Some(path_arg) = path_arg else {
+        eprintln!("usage: dat_linter [-v|-vv] <path/to/file.dat>");
         return ExitCode::FAILURE;
     };
+    let level = Severity::from_verbosity(verbosity);
 
     let path = Path::new(&path_arg);
     let dat = match DatFile::parse(path) {
@@ -35,26 +46,26 @@ fn main() -> ExitCode {
     let dat_dir = path.parent().unwrap_or_else(|| Path::new("."));
     let diags = rules::check_building(&dat, dat_dir);
 
-    if diags.is_empty() {
-        println!("{}: OK（既知ルールの範囲では問題なし）", path.display());
-        return ExitCode::SUCCESS;
-    }
-
-    let mut has_error = false;
-    for d in &diags {
+    for d in diags.iter().filter(|d| d.severity <= level) {
         println!("{}: {d}", path.display());
-        if d.severity == Severity::Error {
-            has_error = true;
-        }
     }
-    println!(
-        "{}: {} 件の問題（error含む: {}）",
-        path.display(),
-        diags.len(),
-        has_error
-    );
 
-    if has_error {
+    let error_count = diags.iter().filter(|d| d.severity == Severity::Error).count();
+    let warning_count = diags
+        .iter()
+        .filter(|d| d.severity == Severity::Warning)
+        .count();
+
+    if error_count == 0 && warning_count == 0 {
+        println!("{}: OK（既知ルールの範囲では問題なし）", path.display());
+    } else {
+        println!(
+            "{}: error {error_count} 件 / warning {warning_count} 件",
+            path.display()
+        );
+    }
+
+    if error_count > 0 {
         ExitCode::FAILURE
     } else {
         ExitCode::SUCCESS

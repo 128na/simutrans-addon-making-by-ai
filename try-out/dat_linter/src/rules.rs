@@ -41,8 +41,17 @@ const KNOWN_WAYTYPES: &[&str] = &[
 pub fn check_building(dat: &DatFile, dat_dir: &Path) -> Vec<Diagnostic> {
     let mut diags = Vec::new();
 
+    diags.push(Diagnostic::debug(
+        "parsed-pairs",
+        format!("{} 個のkey=valueを読み込み", dat.pairs.len()),
+    ));
+
     let type_name = dat.get("type").unwrap_or("").to_ascii_lowercase();
     let waytype = dat.get("waytype").unwrap_or("").to_ascii_lowercase();
+    diags.push(Diagnostic::debug(
+        "raw-type-waytype",
+        format!("type=\"{type_name}\" waytype=\"{waytype}\""),
+    ));
 
     check_type_and_waytype(&type_name, &waytype, &mut diags);
 
@@ -91,6 +100,11 @@ fn check_type_and_waytype(type_name: &str, waytype: &str, diags: &mut Vec<Diagno
                 "unknown-waytype",
                 format!("waytype={waytype} は不正な値です（FATAL ERRORになります）"),
             ));
+        } else {
+            diags.push(Diagnostic::info(
+                "type-waytype-ok",
+                format!("type={type_name} waytype={waytype}"),
+            ));
         }
     } else if type_name == "extension" {
         if waytype.is_empty() {
@@ -103,7 +117,14 @@ fn check_type_and_waytype(type_name: &str, waytype: &str, diags: &mut Vec<Diagno
                 "unknown-waytype",
                 format!("waytype={waytype} は不正な値です（FATAL ERRORになります）"),
             ));
+        } else {
+            diags.push(Diagnostic::info(
+                "type-waytype-ok",
+                format!("type={type_name} waytype={waytype}"),
+            ));
         }
+    } else {
+        diags.push(Diagnostic::info("type-waytype-ok", format!("type={type_name}")));
     }
 }
 
@@ -115,11 +136,20 @@ fn check_dims(dat: &DatFile, diags: &mut Vec<Diagnostic>) -> (i64, i64, i64) {
     if layouts == 0 {
         layouts = if size_x == size_y { 1 } else { 2 };
     }
+    diags.push(Diagnostic::debug(
+        "dims-resolved",
+        format!("Dims={:?} -> size_x={size_x} size_y={size_y} layouts={layouts}", ints),
+    ));
 
     if size_x * size_y == 0 {
         diags.push(Diagnostic::error(
             "zero-size",
             format!("Dims のサイズが0です (size_x={size_x}, size_y={size_y})"),
+        ));
+    } else {
+        diags.push(Diagnostic::info(
+            "dims-ok",
+            format!("size={size_x}x{size_y} layouts={layouts}"),
         ));
     }
 
@@ -129,6 +159,10 @@ fn check_dims(dat: &DatFile, diags: &mut Vec<Diagnostic>) -> (i64, i64, i64) {
 fn check_cursor_icon(dat: &DatFile, dat_dir: &Path, diags: &mut Vec<Diagnostic>) {
     let cursor = dat.get("cursor").unwrap_or("");
     let icon = dat.get("icon").unwrap_or("");
+    diags.push(Diagnostic::debug(
+        "raw-cursor-icon",
+        format!("cursor=\"{cursor}\" icon=\"{icon}\""),
+    ));
 
     if cursor.is_empty() && icon.is_empty() {
         diags.push(Diagnostic::error(
@@ -168,6 +202,11 @@ fn check_tile_images(
                 let front6 = format!("frontimage[{l}][{y}][{x}][0][0][0]");
                 let back6 = format!("backimage[{l}][{y}][{x}][0][0][0]");
 
+                diags.push(Diagnostic::debug(
+                    "tile-key-lookup",
+                    format!("layout {l} tile ({x},{y}): {front5} / {back5} ({front6} / {back6} もfallback確認)"),
+                ));
+
                 let front = dat.get(&front5).or_else(|| dat.get(&front6));
                 let back = dat.get(&back5).or_else(|| dat.get(&back6));
 
@@ -179,6 +218,10 @@ fn check_tile_images(
                         ),
                     ));
                 } else {
+                    diags.push(Diagnostic::info(
+                        "tile-image-ok",
+                        format!("layout {l} tile ({x},{y})"),
+                    ));
                     if let Some(v) = front {
                         check_image_ref(v, dat_dir, &format!("frontimage[{l}][{y}][{x}]"), false, diags);
                     }
@@ -226,6 +269,11 @@ fn check_image_ref(
     };
 
     let path = dat_dir.join(&filename);
+    diags.push(Diagnostic::debug(
+        "image-ref-resolved",
+        format!("{context}: \"{value}\" -> filename=\"{filename}\" path={}", path.display()),
+    ));
+
     if !path.is_file() {
         diags.push(Diagnostic::error(
             "missing-image-file",
@@ -237,7 +285,9 @@ fn check_image_ref(
     match image::open(&path) {
         Ok(img) => {
             let (w, h) = (img.width(), img.height());
+            let mut ok = true;
             if w % 128 != 0 || h % 128 != 0 {
+                ok = false;
                 diags.push(Diagnostic::error(
                     "image-size-not-multiple-of-128",
                     format!("{context}: {filename} のサイズが {w}x{h} です。makeobj pak128 は128の倍数でないとエラーになります"),
@@ -247,12 +297,19 @@ fn check_image_ref(
                 let rgba = img.to_rgba8();
                 if let Some(px) = rgba.get_pixel_checked(0, 0) {
                     if px[3] == 0 {
+                        ok = false;
                         diags.push(Diagnostic::warning(
                             "transparent-corner-pixel",
                             format!("{context}: {filename} の左上(0,0)ピクセルが透過です。ゲームがアイコンを認識しない場合があります"),
                         ));
                     }
                 }
+            }
+            if ok {
+                diags.push(Diagnostic::info(
+                    "image-ok",
+                    format!("{context}: {filename} {w}x{h}"),
+                ));
             }
         }
         Err(e) => {
