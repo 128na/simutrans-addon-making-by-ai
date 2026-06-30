@@ -1,0 +1,5 @@
+Obj=building
+type=station
+Name = Hoge
+enables_pax=1
+copyright=fuga

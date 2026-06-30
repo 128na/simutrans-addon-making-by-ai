@@ -1,0 +1,6 @@
+Obj=building
+type=station
+Name = Hoge
+ enables_post=1
+this is not a key value line
+copyright=fuga

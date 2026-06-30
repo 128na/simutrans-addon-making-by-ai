@@ -1,0 +1,19 @@
+obj=building
+name=test_station_cube_128
+copyright=AI addon test
+type=extension
+waytype=track
+enables_pax=1
+level=4
+noinfo=1
+dims=1,1,4
+intro_year=1900
+retire_year=2999
+
+cursor=station_icon.png.0.0
+icon=station_icon.png.0.0
+
+backimage[0][0][0][0][0]=station_cube.png.0.0
+backimage[1][0][0][0][0]=station_cube.png.0.0
+backimage[2][0][0][0][0]=station_cube.png.0.0
+backimage[3][0][0][0][0]=station_cube.png.0.0

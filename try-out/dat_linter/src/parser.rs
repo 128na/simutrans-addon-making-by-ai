@@ -2,8 +2,10 @@ use std::collections::BTreeMap;
 use std::fs;
 use std::path::Path;
 
-/// 簡易 .dat パーサ。makeobj の tabfile_t::format_key() を模倣する:
-/// キーは前後空白をトリムして小文字化、'[' 'と']'の間の空白は除去する。
+/// 簡易 .dat パーサ。makeobj の tabfile_t::read() を模倣する:
+/// キーは前後空白をトリムして小文字化、'['と']'の間の空白は除去する。
+/// 値は tabfile.cc と同様に**一切トリムしない**（`name= Hoge`のような書き方で
+/// 値に意図しない先頭スペースが混入するのを、linterが正しく検出できるようにするため）。
 pub struct DatFile {
     pub pairs: BTreeMap<String, String>,
 }
@@ -22,7 +24,7 @@ impl DatFile {
                 continue;
             };
             let key = format_key(key_raw);
-            pairs.insert(key, value.trim().to_string());
+            pairs.insert(key, value.to_string());
         }
 
         Ok(DatFile { pairs })
@@ -43,7 +45,9 @@ impl DatFile {
     }
 }
 
-fn format_key(raw: &str) -> String {
+/// `tabfile_t::format_key()` を模倣: 末尾空白トリム、小文字化、'['と']'内の空白除去。
+/// formatter.rs からも参照する。
+pub(crate) fn format_key(raw: &str) -> String {
     let trimmed = raw.trim_end();
     let mut out = String::with_capacity(trimmed.len());
     let mut in_bracket = false;

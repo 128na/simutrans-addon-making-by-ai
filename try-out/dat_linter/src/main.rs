@@ -1,4 +1,5 @@
 mod diagnostics;
+mod formatter;
 mod parser;
 mod rules;
 
@@ -8,24 +9,37 @@ use std::path::Path;
 use std::process::ExitCode;
 
 fn main() -> ExitCode {
-    let mut path_arg: Option<String> = None;
+    let mut args: Vec<String> = std::env::args().skip(1).collect();
+
+    if !args.is_empty() && args[0] == "fmt" {
+        args.remove(0);
+        return run_fmt(&args);
+    }
+    if !args.is_empty() && args[0] == "lint" {
+        args.remove(0);
+    }
+    run_lint(&args)
+}
+
+fn run_lint(args: &[String]) -> ExitCode {
+    let mut path_arg: Option<&str> = None;
     let mut verbosity: u8 = 0;
-    for arg in std::env::args().skip(1) {
+    for arg in args {
         match arg.as_str() {
             // -v: info まで表示 / -vv: debug まで表示
             "-v" | "--verbose" => verbosity = verbosity.max(1),
             "-vv" => verbosity = verbosity.max(2),
-            other => path_arg = Some(other.to_string()),
+            other => path_arg = Some(other),
         }
     }
 
     let Some(path_arg) = path_arg else {
-        eprintln!("usage: dat_linter [-v|-vv] <path/to/file.dat>");
+        eprintln!("usage: dat_linter [lint] [-v|-vv] <path/to/file.dat>");
         return ExitCode::FAILURE;
     };
     let level = Severity::from_verbosity(verbosity);
 
-    let path = Path::new(&path_arg);
+    let path = Path::new(path_arg);
     let dat = match DatFile::parse(path) {
         Ok(d) => d,
         Err(e) => {
@@ -70,4 +84,58 @@ fn main() -> ExitCode {
     } else {
         ExitCode::SUCCESS
     }
+}
+
+fn run_fmt(args: &[String]) -> ExitCode {
+    let mut path_arg: Option<&str> = None;
+    let mut reorder = false;
+    let mut write = false;
+    for arg in args {
+        match arg.as_str() {
+            "--reorder" => reorder = true,
+            "--write" | "-w" => write = true,
+            other => path_arg = Some(other),
+        }
+    }
+
+    let Some(path_arg) = path_arg else {
+        eprintln!("usage: dat_linter fmt [--reorder] [--write] <path/to/file.dat>");
+        return ExitCode::FAILURE;
+    };
+    let path = Path::new(path_arg);
+
+    let text = match std::fs::read_to_string(path) {
+        Ok(t) => t,
+        Err(e) => {
+            eprintln!("{}: 読み込みに失敗しました ({e})", path.display());
+            return ExitCode::FAILURE;
+        }
+    };
+
+    let parsed = formatter::parse_entries(&text);
+    for w in &parsed.warnings {
+        eprintln!("{}: {w}", path.display());
+    }
+
+    let formatted = if reorder {
+        let (out, warnings) = formatter::format_reordered(&parsed.entries);
+        for w in &warnings {
+            eprintln!("{}: {w}", path.display());
+        }
+        out
+    } else {
+        formatter::format_preserve_order(&parsed.entries)
+    };
+
+    if write {
+        if let Err(e) = std::fs::write(path, &formatted) {
+            eprintln!("{}: 書き込みに失敗しました ({e})", path.display());
+            return ExitCode::FAILURE;
+        }
+        eprintln!("{}: フォーマット結果を書き込みました", path.display());
+    } else {
+        print!("{formatted}");
+    }
+
+    ExitCode::SUCCESS
 }
