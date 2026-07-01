@@ -253,6 +253,13 @@ enables_pax=1
   増やす場合、単一ファイル完結のチェックと複数ファイル横断のチェックを
   分けて設計した方が良さそう
 
+## 独立リポジトリ化
+
+本PoCは [`simutrans-dat-linter`](https://github.com/128na/simutrans-dat-linter) として独立リポジトリ化し、
+親リポジトリの submodule（`simutrans-dat-linter/`）に集約した。lib/bin 分割・`cargo test` 統合テスト・
+GitHub Actions CI・MIT LICENSE・ツール用 README を整備済み。**以降のメンテは submodule 側で行う**
+（この try-out ディレクトリは実験の凍結記録として残す）。下記「次回への引き継ぎ」の課題も submodule 側で扱う。
+
 ## 次回への引き継ぎ
 - 現状は`obj=building`の`type=extension`/`stop`/`depot`系のみ対応。
   `vehicle`（shinkansen_0で得た`dat`仕様）や`way`など他obj種別への展開が次の課題
