@@ -80,6 +80,7 @@ simutrans/        submodule: 本体C++ソース + makeobj
 simutrans-dat-parser/      submodule: TypeScript
 simutrans-image-merger/    submodule: Python
 simutrans-image-util/      submodule: TypeScript
+simutrans-dat-linter/      submodule: Rust製 dat linter（try-out/dat_linter を独立化）
 ```
 
 `simuwin/`（ゲーム本体）と `refs/`（参照アドオン）は .gitignore により除外。
