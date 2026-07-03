@@ -118,15 +118,16 @@ waytype=track
 enables_pax=1
 NoInfo=1
 Dims=1,1,4
-cursor=icon.png.0.0
-icon=icon.png.0.0
-BackImage[0][0][0][0][0]=image.png.0.0
-BackImage[1][0][0][0][0]=image.png.0.0
-BackImage[2][0][0][0][0]=image.png.0.0
-BackImage[3][0][0][0][0]=image.png.0.0
+cursor=icon.0.0
+icon=icon.0.0
+BackImage[0][0][0][0][0]=image.0.0
+BackImage[1][0][0][0][0]=image.0.0
+BackImage[2][0][0][0][0]=image.0.0
+BackImage[3][0][0][0][0]=image.0.0
 ```
 
 - `cursor` / `icon` がないとビルドメニューに表示されない
 - アイコン画像は 128×128、背景不透過（左上(0,0)が透明だとゲームが認識しない）
 - `makeobj pak128` は全画像が **128の倍数** サイズでないとエラー
 - makeobj はパラメーター不足でもエラーを出さない（エラーなし ≠ 正しい）
+- 画像参照は `ファイル名.列.行`（`.png` を含めない）。makeobj は最初の `.` より前だけをファイル名として扱い `.png` を自動付与するため、row/col が0でない場合に literal に `.png` を挟むと列/行を誤読する（詳細は [knowledge.md](knowledge.md) 参照）
