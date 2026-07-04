@@ -1,6 +1,3 @@
-[submodule "simutrans"]
-	path = simutrans
-	url = https://github.com/128na/simutrans.git
 [submodule "simutrans-dat-parser"]
 	path = simutrans-dat-parser
 	url = https://github.com/128na/simutrans-dat-parser.git
@@ -13,6 +10,3 @@
 [submodule "simutrans-dat-linter"]
 	path = simutrans-dat-linter
 	url = https://github.com/128na/simutrans-dat-linter.git
-[submodule "pak128"]
-	path = pak128
-	url = https://github.com/simutrans/pak128.git

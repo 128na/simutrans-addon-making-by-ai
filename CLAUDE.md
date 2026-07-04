@@ -76,14 +76,17 @@ try-out/          実験ディレクトリ（各実験に README.md）
   station_test/   pak128 駅拡張建物フルパイプライン検証
 knowledge.md      技術知見（カメラ仕様・dat制約・Blenderノート）
 roadmap.md        目標・フェーズ・TODO
-simutrans/        submodule: 本体C++ソース + makeobj
 simutrans-dat-parser/      submodule: TypeScript
 simutrans-image-merger/    submodule: Python
 simutrans-image-util/      submodule: TypeScript
 simutrans-dat-linter/      submodule: Rust製 dat linter（try-out/dat_linter を独立化）
 ```
 
-`simuwin/`（ゲーム本体）と `refs/`（参照アドオン）は .gitignore により除外。
+上記4つは実際に開発しているツール群のためsubmodule管理（正確なcommitを固定する意味がある）。
+一方 `refs/simutrans`（makeobj本体のC++ソース、動作仕様の参照専用）・`refs/pak128`
+（pak128公式データ、lint/fmtの実データ検証専用）・`simuwin/`（ゲーム本体）・`refs/`配下の
+参照アドオンは、読み取り専用の参照データでありcommit固定の必要が無いため submodule 化せず
+`refs/` 配下に置き .gitignore により除外している。
 
 ## Blender スクリプト パターン
 
