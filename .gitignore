@@ -7,3 +7,7 @@ refs/
 # ビルド成果物
 *.pak
 target/
+
+# AIエージェントの進捗管理ファイル 
+/todo.md
+/tree.md
