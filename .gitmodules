@@ -13,3 +13,6 @@
 [submodule "simutrans-dat-linter"]
 	path = simutrans-dat-linter
 	url = https://github.com/128na/simutrans-dat-linter.git
+[submodule "pak128"]
+	path = pak128
+	url = https://github.com/simutrans/pak128.git
