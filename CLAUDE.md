@@ -39,6 +39,18 @@ makeobj VERBOSE DEBUG pak128 output.pak input.dat
 ### Simutrans でアドオンを読み込む
 生成した `.pak` を Simutrans の `pak128/addons/` に置いて起動する。
 
+### dat_linter（.dat の静的検証・整形・連結解析）
+`refs/simutrans-dat-linter` のreleaseビルドにPATHが通っており、フルパス指定不要で
+どこからでも呼び出せる。
+```
+dat_linter lint <path|dir|glob>      # 静的検証（複数ファイル一括対応）
+dat_linter fmt <path|dir|glob> [-w]  # 正規化・並び替え（デフォルトreorder、--no-reorderで無効化）
+dat_linter analyze <dir> --kind coupling  # obj=vehicle の連結制約解析
+dat_linter list [--source lint|fmt|analyze]  # include/exclude設定可能なルールcode一覧
+```
+ルールのinclude/exclude・出力言語(en/ja)は初回実行時に自動生成される
+`dat_linter.toml` で設定する。詳細は`refs/simutrans-dat-linter/README.md`参照。
+
 ## try-out 作業手順
 
 ### 新しい実験を始めるとき
