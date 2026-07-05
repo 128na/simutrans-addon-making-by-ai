@@ -7,6 +7,7 @@ refs/
 # ビルド成果物
 *.pak
 target/
+/dat_linter.toml
 
 # AIエージェントの進捗管理ファイル 
 /todo.md
