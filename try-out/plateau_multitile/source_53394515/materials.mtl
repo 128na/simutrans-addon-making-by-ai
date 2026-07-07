@@ -1,0 +1,5 @@
+# Created with FME Version: FME(R) 2021.1.0.0 20210630 - Build 21607 - WIN64
+newmtl skjp5921
+Ks 0.333333 0.333333 0.333333
+map_Kd .\materials_textures\skjp5921.jpg
+

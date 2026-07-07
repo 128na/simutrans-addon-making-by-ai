@@ -1,0 +1,45 @@
+# Created with FME Version: FME(R) 2021.1.0.0 20210630 - Build 21607 - WIN64
+newmtl tbfj00465
+Ks 0.333333 0.333333 0.333333
+map_Kd .\materials_textures\tbfj00465.jpg
+
+newmtl tbfj00459
+Ks 0.333333 0.333333 0.333333
+map_Kd .\materials_textures\tbfj00459.jpg
+
+newmtl tbfj00394
+Ks 0.333333 0.333333 0.333333
+map_Kd .\materials_textures\tbfj00394.jpg
+
+newmtl tbfj00392
+Ks 0.333333 0.333333 0.333333
+map_Kd .\materials_textures\tbfj00392.jpg
+
+newmtl tbfj00467
+Ks 0.333333 0.333333 0.333333
+map_Kd .\materials_textures\tbfj00467.jpg
+
+newmtl tbfj00390
+Ks 0.333333 0.333333 0.333333
+map_Kd .\materials_textures\tbfj00390.jpg
+
+newmtl tbfj00458
+Ks 0.333333 0.333333 0.333333
+map_Kd .\materials_textures\tbfj00458.jpg
+
+newmtl tbfj00456
+Ks 0.333333 0.333333 0.333333
+map_Kd .\materials_textures\tbfj00456.jpg
+
+newmtl tbfj00466
+Ks 0.333333 0.333333 0.333333
+map_Kd .\materials_textures\tbfj00466.jpg
+
+newmtl tbfj00391
+Ks 0.333333 0.333333 0.333333
+map_Kd .\materials_textures\tbfj00391.jpg
+
+newmtl tbfj01800
+Ks 0.333333 0.333333 0.333333
+map_Kd .\materials_textures\tbfj01800.jpg
+
