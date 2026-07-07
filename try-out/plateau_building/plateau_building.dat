@@ -1,0 +1,19 @@
+obj=building
+name=plateau_test_53394515
+copyright=PLATEAU (MLIT) LOD2 building 53394515, converted for pipeline test
+type=extension
+waytype=track
+enables_pax=1
+level=4
+NoInfo=1
+Dims=1,1,4
+intro_year=1900
+retire_year=2999
+
+cursor=building_icon.png.0.0
+icon=building_icon.png.0.0
+
+BackImage[0][0][0][0][0]=building.png.0.0
+BackImage[1][0][0][0][0]=building.png.0.0
+BackImage[2][0][0][0][0]=building.png.0.0
+BackImage[3][0][0][0][0]=building.png.0.0

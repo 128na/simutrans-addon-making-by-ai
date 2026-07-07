@@ -1,0 +1,19 @@
+obj=building
+name=auto_53393664
+copyright=PLATEAU (MLIT) building, auto-converted for pipeline test
+type=extension
+waytype=track
+enables_pax=1
+level=4
+NoInfo=1
+Dims=1,1,4
+intro_year=1900
+retire_year=2999
+
+cursor=auto_53393664_icon.png.0.0
+icon=auto_53393664_icon.png.0.0
+
+BackImage[0][0][0][0][0]=auto_53393664.png.0.0
+BackImage[1][0][0][0][0]=auto_53393664.png.0.0
+BackImage[2][0][0][0][0]=auto_53393664.png.0.0
+BackImage[3][0][0][0][0]=auto_53393664.png.0.0
