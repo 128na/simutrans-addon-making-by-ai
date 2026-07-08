@@ -1,0 +1,110 @@
+{
+  "1": {
+    "class_type": "CheckpointLoaderSimple",
+    "inputs": {
+      "ckpt_name": "sd_xl_base_1.0_inpainting_0.1.safetensors"
+    }
+  },
+  "2": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "clip": ["1", 1],
+      "text": "isometric view, elevated angle, urban street scene, sidewalk pavement around a building, street trees, low bushes, matching camera angle, no perspective distortion, consistent lighting, top-down oblique shadow, clean flat ground texture, photorealistic"
+    }
+  },
+  "3": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "clip": ["1", 1],
+      "text": "blurry, low quality, text, watermark, people, cars, cropped, distorted perspective, fisheye, front view, straight-on view, tilted horizon"
+    }
+  },
+  "4": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "t2ipoc_canvas.png"
+    }
+  },
+  "5": {
+    "class_type": "LoadImageMask",
+    "inputs": {
+      "image": "t2ipoc_mask.png",
+      "channel": "red"
+    }
+  },
+  "6": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "t2ipoc_silhouette.png"
+    }
+  },
+  "7": {
+    "class_type": "Canny",
+    "inputs": {
+      "image": ["6", 0],
+      "low_threshold": 0.4,
+      "high_threshold": 0.8
+    }
+  },
+  "8": {
+    "class_type": "ControlNetLoader",
+    "inputs": {
+      "control_net_name": "controlnet-canny-sdxl-1.0.safetensors"
+    }
+  },
+  "14": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "sdxl_vae.safetensors"
+    }
+  },
+  "9": {
+    "class_type": "ControlNetApply",
+    "inputs": {
+      "conditioning": ["2", 0],
+      "control_net": ["8", 0],
+      "image": ["7", 0],
+      "strength": 0.6
+    }
+  },
+  "10": {
+    "class_type": "InpaintModelConditioning",
+    "inputs": {
+      "positive": ["9", 0],
+      "negative": ["3", 0],
+      "vae": ["14", 0],
+      "pixels": ["4", 0],
+      "mask": ["5", 0],
+      "noise_mask": true
+    }
+  },
+  "11": {
+    "class_type": "KSampler",
+    "inputs": {
+      "model": ["1", 0],
+      "positive": ["10", 0],
+      "negative": ["10", 1],
+      "latent_image": ["10", 2],
+      "seed": 42,
+      "steps": 25,
+      "cfg": 7.0,
+      "sampler_name": "dpmpp_2m",
+      "scheduler": "karras",
+      "denoise": 1.0
+    }
+  },
+  "12": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": ["11", 0],
+      "vae": ["14", 0]
+    }
+  },
+  "13": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "filename_prefix": "t2ipoc_inpaint",
+      "images": ["12", 0]
+    }
+  }
+}
