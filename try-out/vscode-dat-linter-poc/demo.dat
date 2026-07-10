@@ -1,0 +1,21 @@
+obj=building
+name=demo
+copyright=AI addon test
+type=extension
+waytype=tracks
+enables_pax=1
+level=4
+NoInfo=1
+Dims=1,1,5
+intro_year=1900
+intro_month=12
+retire_year=2999
+retire_month=0
+
+cursor=station_icon.0.0
+icon=station_icon_missing.0.0
+
+BackImage[0][0][0][0][0]=station_cube.0.0
+BackImage[1][0][0][0][0]=station_cube.0.0
+BackImage[2][0][0][0][0]=station_cube.0.0
+BackImage[3][0][0][0][0]=station_cube.0.0

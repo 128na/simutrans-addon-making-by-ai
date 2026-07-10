@@ -1,0 +1,49 @@
+{
+  "name": "vscode-dat-linter-poc",
+  "displayName": "dat_linter PoC",
+  "description": "PoC: surface dat_linter diagnostics for Simutrans .dat files in VSCode's Problems panel",
+  "version": "0.0.1",
+  "private": true,
+  "publisher": "poc",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/src/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "dat_linter PoC",
+      "properties": {
+        "datLinterPoc.executablePath": {
+          "type": "string",
+          "default": "dat_linter",
+          "description": "Path to the dat_linter executable. Defaults to relying on PATH."
+        },
+        "datLinterPoc.configPath": {
+          "type": "string",
+          "default": "",
+          "description": "Explicit path to a dat_linter.toml config file, passed via --config. Empty = let dat_linter resolve its own default (NOTE: this can auto-generate dat_linter.toml in the linted file's directory on first run)."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile",
+    "test": "npm run pretest && vscode-test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.9",
+    "@types/node": "^20.16.0",
+    "@types/vscode": "^1.85.0",
+    "@vscode/test-cli": "^0.0.15",
+    "@vscode/test-electron": "^3.0.0",
+    "typescript": "^5.7.2"
+  }
+}

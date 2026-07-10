@@ -1,0 +1,18 @@
+# Minimal dat_linter config used by the integration tests in test/extension.test.ts.
+# Passed explicitly via --config so dat_linter never falls back to auto-generating
+# a dat_linter.toml next to the linted file (see README.md "得られた知見や失敗").
+#
+# NOTE: this file is deliberately NOT named dat_linter.toml — the repo-wide
+# .gitignore has a blanket "**/dat_linter.toml" rule (to keep dat_linter's
+# auto-generated config out of version control), which would silently exclude
+# this intentional test fixture too.
+
+[general]
+language = "en"
+
+[fmt]
+reorder = true
+
+[rules]
+include = []
+exclude = []
