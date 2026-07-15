@@ -1,0 +1,19 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node-terminal",
+      "request": "launch",
+      "name": "F5: 開いている.datをmakeobjでpak化",
+      "command": "if ('${fileExtname}' -ne '.dat') { Write-Host \"F5: '${file}' は.datファイルではないため何もしません\" } else { makeobj pak128 '${fileBasenameNoExtension}.pak' '${fileBasename}' }",
+      "cwd": "${fileDirname}"
+    },
+    {
+      "type": "node-terminal",
+      "request": "launch",
+      "name": "F5: 開いている.datをmakeobjでpak化（詳細ログ）",
+      "command": "if ('${fileExtname}' -ne '.dat') { Write-Host \"F5: '${file}' は.datファイルではないため何もしません\" } else { makeobj VERBOSE DEBUG pak128 '${fileBasenameNoExtension}.pak' '${fileBasename}' }",
+      "cwd": "${fileDirname}"
+    }
+  ]
+}

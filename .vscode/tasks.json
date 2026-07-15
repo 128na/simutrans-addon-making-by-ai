@@ -1,0 +1,33 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "makeobj: 現在の.datをpak化",
+      "type": "shell",
+      "command": "if ('${fileExtname}' -ne '.dat') { Write-Host \"F5: '${file}' は.datファイルではないため何もしません\"; exit 1 } else { makeobj pak128 '${fileBasenameNoExtension}.pak' '${fileBasename}' }",
+      "options": {
+        "cwd": "${fileDirname}"
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      }
+    },
+    {
+      "label": "makeobj: 現在の.datをpak化（詳細ログ）",
+      "type": "shell",
+      "command": "if ('${fileExtname}' -ne '.dat') { Write-Host \"F5: '${file}' は.datファイルではないため何もしません\"; exit 1 } else { makeobj VERBOSE DEBUG pak128 '${fileBasenameNoExtension}.pak' '${fileBasename}' }",
+      "options": {
+        "cwd": "${fileDirname}"
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      }
+    }
+  ]
+}
