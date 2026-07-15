@@ -1,0 +1,23 @@
+## way_flat_test: 道床+レールの厚み分だけ盛り上がる線路PoC
+obj=way
+name=way_flat_test_rail
+copyright=AI addon test
+waytype=track
+draw_as_ding=0
+cost=1500
+maintenance=150
+topspeed=100
+max_weight=999
+intro_year=1900
+retire_year=2999
+
+cursor=> rail_icon.0.0
+icon=> rail_icon.0.0
+
+Image[-][0]=rail_flat.0.0
+Image[n][0]=rail_flat.0.0
+Image[s][0]=rail_flat.0.0
+Image[e][0]=rail_flat.0.0
+Image[w][0]=rail_flat.0.0
+Image[ns][0]=rail_flat.0.0
+Image[ew][0]=rail_flat.0.0

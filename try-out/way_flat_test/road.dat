@@ -1,0 +1,23 @@
+## way_flat_test: 完全平面(厚み0)の道路PoC
+obj=way
+name=way_flat_test_road
+copyright=AI addon test
+waytype=road
+draw_as_ding=0
+cost=1000
+maintenance=100
+topspeed=50
+max_weight=999
+intro_year=1900
+retire_year=2999
+
+cursor=> road_icon.0.0
+icon=> road_icon.0.0
+
+Image[-][0]=road_flat.0.0
+Image[n][0]=road_flat.0.0
+Image[s][0]=road_flat.0.0
+Image[e][0]=road_flat.0.0
+Image[w][0]=road_flat.0.0
+Image[ns][0]=road_flat.0.0
+Image[ew][0]=road_flat.0.0
