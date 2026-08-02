@@ -256,6 +256,55 @@ def enumerate_patterns(
     return results, truncated[0]
 
 
+def format_pattern(path: list[str]) -> str:
+    """編成1件を表示用文字列に整形する。
+
+    実際のpaksetアドオンでは車両名が長く(系列名を含む)、同じ編成内でその系列名部分が
+    毎両繰り返されて読みにくい（例:
+    "odakyu1000_(Wide-door)_TcFront-odakyu1000_(Wide-door)_M4-...-odakyu1000_(Wide-door)_TcBack"）。
+    パス内の実車両名（"*"や"D?"のようなマーカーは除く）に共通する先頭部分があれば、
+    それを1回だけ出して各両は差分（役割名）だけを`[...]`内に並べる
+    （例: "odakyu1000_(Wide-door)_[TcFront-M4-M5-TcBack]"）。圧縮しても実質的に
+    短くならない場合（短い編成、系列がバラバラ等）はそのまま`-`区切りで表示する。
+    """
+    real_names = [t[:-1] if t.endswith("?") else t for t in path if t != "*"]
+    plain = "-".join(path)
+    if len(real_names) < 2:
+        return plain
+
+    prefix = real_names[0]
+    for name in real_names[1:]:
+        limit = min(len(prefix), len(name))
+        i = 0
+        while i < limit and prefix[i] == name[i]:
+            i += 1
+        prefix = prefix[:i]
+        if not prefix:
+            return plain
+
+    # "odakyu1000_(Wide-door" (=`(`が閉じられる前で切れる)のように括弧の途中で切れると
+    # "odakyu1000_(Wide-door[)_TcFront-..." のように開き括弧と閉じ括弧が[...]を挟んで
+    # 分断され、かえって読みにくくなる。`(`の対応が取れる長さまで後退させる
+    while prefix and prefix.count("(") != prefix.count(")"):
+        prefix = prefix[:-1]
+    if not prefix:
+        return plain
+
+    if any(len(name) == len(prefix) for name in real_names):
+        return plain  # いずれかの車両名がprefixそのもの(接尾辞が空)になるケースは避ける
+
+    parts = []
+    for t in path:
+        if t == "*":
+            parts.append("*")
+        elif t.endswith("?"):
+            parts.append(t[len(prefix):-1] + "?")
+        else:
+            parts.append(t[len(prefix):])
+    compressed = f"{prefix}[{'-'.join(parts)}]"
+    return compressed if len(compressed) < len(plain) else plain
+
+
 def print_truncated(names: list[str], limit: int = 12, indent: str = "  - "):
     for name in names[:limit]:
         print(f"{indent}{name}")
@@ -303,8 +352,10 @@ def main():
     results.sort(key=lambda p: (len(p), p))
 
     print(f"{len(results)} 件の編成パターン (--max-len={args.max_len}):")
+    if results:
+        print("  (車両名の共通する先頭部分は 先頭部分[差分-差分-...] の形にまとめて表示しています)")
     for p in results:
-        print("  " + "-".join(p))
+        print("  " + format_pattern(p))
 
     if truncated:
         print(
