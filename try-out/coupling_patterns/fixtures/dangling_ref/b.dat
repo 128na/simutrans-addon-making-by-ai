@@ -1,0 +1,4 @@
+obj=vehicle
+name=B
+constraint[prev][0]=A
+constraint[next][0]=none

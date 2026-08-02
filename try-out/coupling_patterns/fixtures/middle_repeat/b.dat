@@ -1,0 +1,6 @@
+obj=vehicle
+name=B
+constraint[prev][0]=A
+constraint[prev][1]=B
+constraint[next][0]=B
+constraint[next][1]=C

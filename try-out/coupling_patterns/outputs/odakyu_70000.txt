@@ -1,0 +1,122 @@
+[警告] 以下の車両グループは連結がループしており、理論上は無限に編成パターンが存在します:
+  - (187両のグループ) odakyu1000_(6cars)_M1, odakyu1000_(6cars)_M4, odakyu1000_(6cars)_M5, odakyu1000_(6cars)_T1, odakyu1000_(6cars)_TcBack, odakyu1000_(6cars)_TcFront, odakyu1000_(6cars_SP)_M4, odakyu1000_(6cars_SP)_M5, odakyu1000_(6cars_SP)_T1, odakyu1000_(Renewal)_M1, odakyu1000_(Renewal)_M2, odakyu1000_(Renewal)_M3, ...ほか175件
+  -> 以下は --max-len=16 両までで打ち切った一部の例です
+
+[情報] 以下の車両は連結相手の制約(constraint[next])が無く、どの車両とも連結しえます（一覧では相手を列挙せず "*" で表します）:
+  - odakyu1000_TcBack
+  - odakyu1000_(6cars)_TcBack
+  - odakyu1000_(Renewal)_TcBack
+  - odakyu1000_(Rhaetian)_TcBack
+  - odakyu1000_(Wide-door)_TcBack
+  - odakyu2000_(2nd)_TcBack
+  - odakyu30000(renewal)_TcBack(6th)
+  - odakyu30000(renewal)_TcBack(10th)
+  - odakyu30000_TcBack(6th)
+  - odakyu30000_TcBack(10th)
+  - odakyu3000_(2nd)(type-1)_TcBack
+  - odakyu3000_(2nd)(type-1_debut)_TcBack
+  - ...ほか10件
+
+102 件の編成パターン (--max-len=16):
+  odakyu1000_(Renewal)_TcFront-odakyu1000_(Renewal)_M4-odakyu1000_(Renewal)_M5-odakyu1000_(Renewal)_TcBack
+  odakyu1000_(Rhaetian)_TcFront-odakyu1000_(Rhaetian)_M4-odakyu1000_(Rhaetian)_M5-odakyu1000_(Rhaetian)_TcBack
+  odakyu1000_(Wide-door)_TcFront-odakyu1000_(Wide-door)_M4-odakyu1000_(Wide-door)_M5-odakyu1000_(Wide-door)_TcBack
+  odakyu1000_(Wide-door)_TcFront-odakyu1000_(Wide-door_SP)_M4-odakyu1000_(Wide-door_SP)_M5-odakyu1000_(Wide-door)_TcBack
+  odakyu1000_TcFront-odakyu1000_(SP)_M4-odakyu1000_(SP)_M5-odakyu1000_TcBack
+  odakyu1000_TcFront-odakyu1000_M4-odakyu1000_M5-odakyu1000_TcBack
+  odakyu30000(renewal)_TcFront(7th)-odakyu30000(renewal)_M4(8th)-odakyu30000(renewal)_M5(9th)-odakyu30000(renewal)_TcBack(10th)
+  odakyu30000_TcFront(7th)-odakyu30000_M3(8th)-odakyu30000_M4(9th)-odakyu30000_TcBack(10th)
+  odakyu60000_TcFront(7th)-odakyu60000_M5(8th)-odakyu60000_M6(9th)-odakyu60000_TcBack(10th)
+  odakyu8000_TcFront-odakyu8000_(SP)_M1-odakyu8000_(SP-4cars)_M2-odakyu8000_TcBack
+  odakyu8000_TcFront-odakyu8000_(VVVF)_M1-odakyu8000_(VVVF-4cars)_M2-odakyu8000_TcBack
+  odakyu8000_TcFront-odakyu8000_M1-odakyu8000_(4cars)_M2-odakyu8000_TcBack
+  odakyu1000_(Renewal)_TcFront-odakyu1000_(Renewal)_M4-odakyu1000_(Renewal)_M5-odakyu1000_(Renewal)_TcBack-*
+  odakyu1000_(Rhaetian)_TcFront-odakyu1000_(Rhaetian)_M4-odakyu1000_(Rhaetian)_M5-odakyu1000_(Rhaetian)_TcBack-*
+  odakyu1000_(Wide-door)_TcFront-odakyu1000_(Wide-door)_M4-odakyu1000_(Wide-door)_M5-odakyu1000_(Wide-door)_TcBack-*
+  odakyu1000_(Wide-door)_TcFront-odakyu1000_(Wide-door_SP)_M4-odakyu1000_(Wide-door_SP)_M5-odakyu1000_(Wide-door)_TcBack-*
+  odakyu1000_TcFront-odakyu1000_(SP)_M4-odakyu1000_(SP)_M5-odakyu1000_TcBack-*
+  odakyu1000_TcFront-odakyu1000_M4-odakyu1000_M5-odakyu1000_TcBack-*
+  odakyu30000(renewal)_TcFront(7th)-odakyu30000(renewal)_M4(8th)-odakyu30000(renewal)_M5(9th)-odakyu30000(renewal)_TcBack(10th)-*
+  odakyu30000_TcFront(7th)-odakyu30000_M3(8th)-odakyu30000_M4(9th)-odakyu30000_TcBack(10th)-*
+  odakyu60000_TcFront(7th)-odakyu60000_M5(8th)-odakyu60000_M6(9th)-odakyu60000_TcBack(10th)-*
+  odakyu8000_TcFront-odakyu8000_(SP)_M1-odakyu8000_(SP-4cars)_M2-odakyu8000_TcBack-*
+  odakyu8000_TcFront-odakyu8000_(VVVF)_M1-odakyu8000_(VVVF-4cars)_M2-odakyu8000_TcBack-*
+  odakyu8000_TcFront-odakyu8000_M1-odakyu8000_(4cars)_M2-odakyu8000_TcBack-*
+  odakyu1000_(6cars)_TcFront-odakyu1000_(6cars)_M1-odakyu1000_(6cars)_T1-odakyu1000_(6cars)_M4-odakyu1000_(6cars)_M5-odakyu1000_(6cars)_TcBack
+  odakyu1000_(6cars)_TcFront-odakyu1000_(6cars)_M1-odakyu1000_(6cars_SP)_T1-odakyu1000_(6cars_SP)_M4-odakyu1000_(6cars_SP)_M5-odakyu1000_(6cars)_TcBack
+  odakyu1000_(Wide-door)_TcFront-odakyu1000_(Wide-door-typeA)_M1-odakyu1000_(Wide-door-typeA)_T1-odakyu1000_(Wide-door)_M4-odakyu1000_(Wide-door)_M5-odakyu1000_(Wide-door)_TcBack
+  odakyu1000_(Wide-door)_TcFront-odakyu1000_(Wide-door-typeA)_M1-odakyu1000_(Wide-door-typeA_SP)_T1-odakyu1000_(Wide-door_SP)_M4-odakyu1000_(Wide-door_SP)_M5-odakyu1000_(Wide-door)_TcBack
+  odakyu1000_(Wide-door)_TcFront-odakyu1000_(Wide-door-typeB_SP)_M1-odakyu1000_(Wide-door-typeB_SP)_T1-b-odakyu1000_(Wide-door_SP)_M4-odakyu1000_(Wide-door_SP)_M5-odakyu1000_(Wide-door)_TcBack
+  odakyu1000_(Wide-door)_TcFront-odakyu1000_(Wide-door-typeB_SP)_M1-odakyu1000_(Wide-door-typeB_SP)_T1-f-odakyu1000_(Wide-door_SP)_M4-odakyu1000_(Wide-door_SP)_M5-odakyu1000_(Wide-door)_TcBack
+  odakyu30000(renewal)_TcFront(1st)-odakyu30000(renewal)_M1(2nd)-odakyu30000(renewal)_M2(3rd)-odakyu30000(renewal)_T(4th)-odakyu30000(renewal)_M3(5th)-odakyu30000(renewal)_TcBack(6th)
+  odakyu30000_TcFront(1st)-odakyu30000_M1(2nd)-odakyu30000_T1(3rd)-odakyu30000_T2(4th)-odakyu30000_M2(5th)-odakyu30000_TcBack(6th)
+  odakyu3000_(2nd)(type-1)_TcFront-odakyu3000_(2nd)(type-1)_M1-odakyu3000_(2nd)(type-1)_M2-odakyu3000_(2nd)(type-1)_M3-odakyu3000_(2nd)(type-1)_M4-odakyu3000_(2nd)(type-1)_TcBack
+  odakyu3000_(2nd)(type-1)_TcFront-odakyu3000_(2nd)(type-1)_M1-odakyu3000_(2nd)(type-1)_M2-odakyu3000_(2nd)(type-1)_M3-odakyu3000_(2nd)(type-1)_M4-odakyu3000_(2nd)(type-1_debut)_TcBack
+  odakyu3000_(2nd)(type-1_debut)_TcFront-odakyu3000_(2nd)(type-1)_M1-odakyu3000_(2nd)(type-1)_M2-odakyu3000_(2nd)(type-1)_M3-odakyu3000_(2nd)(type-1)_M4-odakyu3000_(2nd)(type-1)_TcBack
+  odakyu3000_(2nd)(type-1_debut)_TcFront-odakyu3000_(2nd)(type-1)_M1-odakyu3000_(2nd)(type-1)_M2-odakyu3000_(2nd)(type-1)_M3-odakyu3000_(2nd)(type-1)_M4-odakyu3000_(2nd)(type-1_debut)_TcBack
+  odakyu3000_(2nd)(type-2)_TcFront-odakyu3000_(2nd)(type-2)_M1-odakyu3000_(2nd)(type-2)_M2-odakyu3000_(2nd)(type-2)_M3-odakyu3000_(2nd)(type-2)_M4-odakyu3000_(2nd)(type-2)_TcBack
+  odakyu3000_(2nd)(type-2)_TcFront-odakyu3000_(2nd)(type-2)_M1-odakyu3000_(2nd)(type-2)_M2-odakyu3000_(2nd)(type-2)_M3-odakyu3000_(2nd)(type-2)_M4-odakyu3000_(2nd)(type-2_debut)_TcBack
+  odakyu3000_(2nd)(type-2_debut)_TcFront-odakyu3000_(2nd)(type-2)_M1-odakyu3000_(2nd)(type-2)_M2-odakyu3000_(2nd)(type-2)_M3-odakyu3000_(2nd)(type-2)_M4-odakyu3000_(2nd)(type-2)_TcBack
+  odakyu3000_(2nd)(type-2_debut)_TcFront-odakyu3000_(2nd)(type-2)_M1-odakyu3000_(2nd)(type-2)_M2-odakyu3000_(2nd)(type-2)_M3-odakyu3000_(2nd)(type-2)_M4-odakyu3000_(2nd)(type-2_debut)_TcBack
+  odakyu3000_(2nd)(type-3)_TcFront-odakyu3000_(2nd)(type-3)_M1-odakyu3000_(2nd)(type-3)_T1-odakyu3000_(2nd)(type-3)_M4-odakyu3000_(2nd)(type-3)_M5-odakyu3000_(2nd)(type-3)_TcBack
+  odakyu60000_TcFront(1st)-odakyu60000_M1(2nd)-odakyu60000_M2(3rd)-odakyu60000_M3(4th)-odakyu60000_M4(5th)-odakyu60000_TcBack(6th)
+  odakyu8000_TcFront-odakyu8000_(SP)_M1-odakyu8000_(SP-6cars)_M2-odakyu8000_(SP)_M3-odakyu8000_M4-odakyu8000_TcBack
+  odakyu8000_TcFront-odakyu8000_(VVVF)_M1-odakyu8000_(VVVF-6cars)_T-odakyu8000_(VVVF)_M2-odakyu8000_(VVVF)_M3-odakyu8000_TcBack
+  odakyu8000_TcFront-odakyu8000_M1-odakyu8000_(6cars)_M2-odakyu8000_M3-odakyu8000_M4-odakyu8000_TcBack
+  odakyu1000_(6cars)_TcFront-odakyu1000_(6cars)_M1-odakyu1000_(6cars)_T1-odakyu1000_(6cars)_M4-odakyu1000_(6cars)_M5-odakyu1000_(6cars)_TcBack-*
+  odakyu1000_(6cars)_TcFront-odakyu1000_(6cars)_M1-odakyu1000_(6cars_SP)_T1-odakyu1000_(6cars_SP)_M4-odakyu1000_(6cars_SP)_M5-odakyu1000_(6cars)_TcBack-*
+  odakyu1000_(Wide-door)_TcFront-odakyu1000_(Wide-door-typeA)_M1-odakyu1000_(Wide-door-typeA)_T1-odakyu1000_(Wide-door)_M4-odakyu1000_(Wide-door)_M5-odakyu1000_(Wide-door)_TcBack-*
+  odakyu1000_(Wide-door)_TcFront-odakyu1000_(Wide-door-typeA)_M1-odakyu1000_(Wide-door-typeA_SP)_T1-odakyu1000_(Wide-door_SP)_M4-odakyu1000_(Wide-door_SP)_M5-odakyu1000_(Wide-door)_TcBack-*
+  odakyu1000_(Wide-door)_TcFront-odakyu1000_(Wide-door-typeB_SP)_M1-odakyu1000_(Wide-door-typeB_SP)_T1-b-odakyu1000_(Wide-door_SP)_M4-odakyu1000_(Wide-door_SP)_M5-odakyu1000_(Wide-door)_TcBack-*
+  odakyu1000_(Wide-door)_TcFront-odakyu1000_(Wide-door-typeB_SP)_M1-odakyu1000_(Wide-door-typeB_SP)_T1-f-odakyu1000_(Wide-door_SP)_M4-odakyu1000_(Wide-door_SP)_M5-odakyu1000_(Wide-door)_TcBack-*
+  odakyu30000(renewal)_TcFront(1st)-odakyu30000(renewal)_M1(2nd)-odakyu30000(renewal)_M2(3rd)-odakyu30000(renewal)_T(4th)-odakyu30000(renewal)_M3(5th)-odakyu30000(renewal)_TcBack(6th)-*
+  odakyu30000_TcFront(1st)-odakyu30000_M1(2nd)-odakyu30000_T1(3rd)-odakyu30000_T2(4th)-odakyu30000_M2(5th)-odakyu30000_TcBack(6th)-*
+  odakyu3000_(2nd)(type-1)_TcFront-odakyu3000_(2nd)(type-1)_M1-odakyu3000_(2nd)(type-1)_M2-odakyu3000_(2nd)(type-1)_M3-odakyu3000_(2nd)(type-1)_M4-odakyu3000_(2nd)(type-1)_TcBack-*
+  odakyu3000_(2nd)(type-1)_TcFront-odakyu3000_(2nd)(type-1)_M1-odakyu3000_(2nd)(type-1)_M2-odakyu3000_(2nd)(type-1)_M3-odakyu3000_(2nd)(type-1)_M4-odakyu3000_(2nd)(type-1_debut)_TcBack-*
+  odakyu3000_(2nd)(type-1_debut)_TcFront-odakyu3000_(2nd)(type-1)_M1-odakyu3000_(2nd)(type-1)_M2-odakyu3000_(2nd)(type-1)_M3-odakyu3000_(2nd)(type-1)_M4-odakyu3000_(2nd)(type-1)_TcBack-*
+  odakyu3000_(2nd)(type-1_debut)_TcFront-odakyu3000_(2nd)(type-1)_M1-odakyu3000_(2nd)(type-1)_M2-odakyu3000_(2nd)(type-1)_M3-odakyu3000_(2nd)(type-1)_M4-odakyu3000_(2nd)(type-1_debut)_TcBack-*
+  odakyu3000_(2nd)(type-2)_TcFront-odakyu3000_(2nd)(type-2)_M1-odakyu3000_(2nd)(type-2)_M2-odakyu3000_(2nd)(type-2)_M3-odakyu3000_(2nd)(type-2)_M4-odakyu3000_(2nd)(type-2)_TcBack-*
+  odakyu3000_(2nd)(type-2)_TcFront-odakyu3000_(2nd)(type-2)_M1-odakyu3000_(2nd)(type-2)_M2-odakyu3000_(2nd)(type-2)_M3-odakyu3000_(2nd)(type-2)_M4-odakyu3000_(2nd)(type-2_debut)_TcBack-*
+  odakyu3000_(2nd)(type-2_debut)_TcFront-odakyu3000_(2nd)(type-2)_M1-odakyu3000_(2nd)(type-2)_M2-odakyu3000_(2nd)(type-2)_M3-odakyu3000_(2nd)(type-2)_M4-odakyu3000_(2nd)(type-2)_TcBack-*
+  odakyu3000_(2nd)(type-2_debut)_TcFront-odakyu3000_(2nd)(type-2)_M1-odakyu3000_(2nd)(type-2)_M2-odakyu3000_(2nd)(type-2)_M3-odakyu3000_(2nd)(type-2)_M4-odakyu3000_(2nd)(type-2_debut)_TcBack-*
+  odakyu3000_(2nd)(type-3)_TcFront-odakyu3000_(2nd)(type-3)_M1-odakyu3000_(2nd)(type-3)_T1-odakyu3000_(2nd)(type-3)_M4-odakyu3000_(2nd)(type-3)_M5-odakyu3000_(2nd)(type-3)_TcBack-*
+  odakyu60000_TcFront(1st)-odakyu60000_M1(2nd)-odakyu60000_M2(3rd)-odakyu60000_M3(4th)-odakyu60000_M4(5th)-odakyu60000_TcBack(6th)-*
+  odakyu70000_TcFront-odakyu70000_M1-odakyu70000_M2-odakyu70000_T-odakyu70000_M3-odakyu70000_M4-odakyu70000_TcBack
+  odakyu8000_TcFront-odakyu8000_(SP)_M1-odakyu8000_(SP-6cars)_M2-odakyu8000_(SP)_M3-odakyu8000_M4-odakyu8000_TcBack-*
+  odakyu8000_TcFront-odakyu8000_(VVVF)_M1-odakyu8000_(VVVF-6cars)_T-odakyu8000_(VVVF)_M2-odakyu8000_(VVVF)_M3-odakyu8000_TcBack-*
+  odakyu8000_TcFront-odakyu8000_M1-odakyu8000_(6cars)_M2-odakyu8000_M3-odakyu8000_M4-odakyu8000_TcBack-*
+  odakyu1000_TcFront-odakyu1000_M1-odakyu1000_(SP)_T1-odakyu1000_(SP)_M2-odakyu1000_(SP)_T3-odakyu1000_(SP)_M4-odakyu1000_(SP)_M5-odakyu1000_TcBack
+  odakyu1000_TcFront-odakyu1000_M1-odakyu1000_T1-odakyu1000_M2-odakyu1000_T3-odakyu1000_M4-odakyu1000_M5-odakyu1000_TcBack
+  odakyu2000_(2nd)_TcFront-odakyu2000_(2nd)_(SP)_M2-odakyu2000_(2nd)_(SP)_M3-odakyu2000_(2nd)_(SP)_T2-odakyu2000_(2nd)_(SP)_T3-odakyu2000_(2nd)_(SP)_M4-odakyu2000_(2nd)_M5-odakyu2000_(2nd)_TcBack
+  odakyu2000_(2nd)_TcFront-odakyu2000_(2nd)_M2-odakyu2000_(2nd)_M3-odakyu2000_(2nd)_T2-odakyu2000_(2nd)_T3-odakyu2000_(2nd)_M4-odakyu2000_(2nd)_M5-odakyu2000_(2nd)_TcBack
+  odakyu3000_(2nd)(type-3)_TcFront-odakyu3000_(2nd)(type-3)_M2-odakyu3000_(2nd)(type-3)_M3-odakyu3000_(2nd)(type-3)_T2-odakyu3000_(2nd)(type-3)_T3-odakyu3000_(2nd)(type-3)_M4-odakyu3000_(2nd)(type-3)_M5-odakyu3000_(2nd)(type-3)_TcBack
+  odakyu70000_TcFront-odakyu70000_M1-odakyu70000_M2-odakyu70000_T-odakyu70000_M3-odakyu70000_M4-odakyu70000_TcBack-*
+  odakyu1000_TcFront-odakyu1000_M1-odakyu1000_(SP)_T1-odakyu1000_(SP)_M2-odakyu1000_(SP)_T3-odakyu1000_(SP)_M4-odakyu1000_(SP)_M5-odakyu1000_TcBack-*
+  odakyu1000_TcFront-odakyu1000_M1-odakyu1000_T1-odakyu1000_M2-odakyu1000_T3-odakyu1000_M4-odakyu1000_M5-odakyu1000_TcBack-*
+  odakyu2000_(2nd)_TcFront-odakyu2000_(2nd)_(SP)_M2-odakyu2000_(2nd)_(SP)_M3-odakyu2000_(2nd)_(SP)_T2-odakyu2000_(2nd)_(SP)_T3-odakyu2000_(2nd)_(SP)_M4-odakyu2000_(2nd)_M5-odakyu2000_(2nd)_TcBack-*
+  odakyu2000_(2nd)_TcFront-odakyu2000_(2nd)_M2-odakyu2000_(2nd)_M3-odakyu2000_(2nd)_T2-odakyu2000_(2nd)_T3-odakyu2000_(2nd)_M4-odakyu2000_(2nd)_M5-odakyu2000_(2nd)_TcBack-*
+  odakyu3000_(2nd)(type-3)_TcFront-odakyu3000_(2nd)(type-3)_M2-odakyu3000_(2nd)(type-3)_M3-odakyu3000_(2nd)(type-3)_T2-odakyu3000_(2nd)(type-3)_T3-odakyu3000_(2nd)(type-3)_M4-odakyu3000_(2nd)(type-3)_M5-odakyu3000_(2nd)(type-3)_TcBack-*
+  odakyu1000_(Renewal)_TcFront-odakyu1000_(Renewal)_M1-odakyu1000_(Renewal)_T1-odakyu1000_(Renewal)_M2-odakyu1000_(Renewal)_M3-odakyu1000_(Renewal)_T2-odakyu1000_(Renewal)_T3-odakyu1000_(Renewal)_M4-odakyu1000_(Renewal)_M5-odakyu1000_(Renewal)_TcBack
+  odakyu1000_(Renewal-1095F)_TcFront-odakyu1000_(Renewal)_M1-odakyu1000_(Renewal)_T1-odakyu1000_(Renewal)_M2-odakyu1000_(Renewal)_M3-odakyu1000_(Renewal)_T2-odakyu1000_(Renewal)_T3-odakyu1000_(Renewal)_M4-odakyu1000_(Renewal)_M5-odakyu1000_(Renewal)_TcBack
+  odakyu1000_(Renewal-1095F)_TcFront-odakyu1000_(Renewal-1095F)_M1-odakyu1000_(Renewal-1095F)_T1-odakyu1000_(Renewal-1095F)_M2-odakyu1000_(Renewal-1095F)_M3-odakyu1000_(Renewal-1095F)_T2-odakyu1000_(Renewal-1095F)_T3-odakyu1000_(Renewal)_M4-odakyu1000_(Renewal)_M5-odakyu1000_(Renewal)_TcBack
+  odakyu1000_TcFront-odakyu1000_M1-odakyu1000_(SP)_T1-odakyu1000_(SP)_M2-odakyu1000_(SP)_M3-odakyu1000_(SP)_T2-odakyu1000_(SP)_T3-odakyu1000_(SP)_M4-odakyu1000_(SP)_M5-odakyu1000_TcBack
+  odakyu1000_TcFront-odakyu1000_M1-odakyu1000_T1-odakyu1000_M2-odakyu1000_M3-odakyu1000_T2-odakyu1000_T3-odakyu1000_M4-odakyu1000_M5-odakyu1000_TcBack
+  odakyu30000(renewal)_TcFront(1st)-odakyu30000(renewal)_M1(2nd)-odakyu30000(renewal)_M2(3rd)-odakyu30000(renewal)_T(4th)-odakyu30000(renewal)_M3(5th)-odakyu30000(renewal)_Tc(6th)-odakyu30000(renewal)_Tc(7th)-odakyu30000(renewal)_M4(8th)-odakyu30000(renewal)_M5(9th)-odakyu30000(renewal)_TcBack(10th)
+  odakyu30000_TcFront(1st)-odakyu30000_M1(2nd)-odakyu30000_T1(3rd)-odakyu30000_T2(4th)-odakyu30000_M2(5th)-odakyu30000_Tc(6th)-odakyu30000_Tc(7th)-odakyu30000_M3(8th)-odakyu30000_M4(9th)-odakyu30000_TcBack(10th)
+  odakyu3000_(2nd)(type-3)_TcFront-odakyu3000_(2nd)(type-3)_M1-odakyu3000_(2nd)(type-3)_T1-odakyu3000_(2nd)(type-3)_M2-odakyu3000_(2nd)(type-3)_M3-odakyu3000_(2nd)(type-3)_T2-odakyu3000_(2nd)(type-3)_T3-odakyu3000_(2nd)(type-3)_M4-odakyu3000_(2nd)(type-3)_M5-odakyu3000_(2nd)(type-3)_TcBack
+  odakyu4000_(2nd)_TcFront-odakyu4000_(2nd)_M1-odakyu4000_(2nd)_M2-odakyu4000_(2nd)_T1-odakyu4000_(2nd)_T2-odakyu4000_(2nd)_M3-odakyu4000_(2nd)_M4-odakyu4000_(2nd)_M5-odakyu4000_(2nd)_M6-odakyu4000_(2nd)_TcBack
+  odakyu50000_McFront-odakyu50000_M1-odakyu50000_M2-odakyu50000_M3-odakyu50000_M4-odakyu50000_M5-odakyu50000_M6-odakyu50000_M7-odakyu50000_M8-odakyu50000_McBack
+  odakyu5000_(2nd)_TcFront-odakyu5000_(2nd)_M1-odakyu5000_(2nd)_T1-odakyu5000_(2nd)_M2-odakyu5000_(2nd)_M3-odakyu5000_(2nd)_T2-odakyu5000_(2nd)_T3-odakyu5000_(2nd)_M4-odakyu5000_(2nd)_M5-odakyu5000_(2nd)_TcBack
+  odakyu60000_TcFront(1st)-odakyu60000_M1(2nd)-odakyu60000_M2(3rd)-odakyu60000_M3(4th)-odakyu60000_M4(5th)-odakyu60000_Tc(6th)-odakyu60000_Tc(7th)-odakyu60000_M5(8th)-odakyu60000_M6(9th)-odakyu60000_TcBack(10th)
+  odakyu1000_(Renewal)_TcFront-odakyu1000_(Renewal)_M1-odakyu1000_(Renewal)_T1-odakyu1000_(Renewal)_M2-odakyu1000_(Renewal)_M3-odakyu1000_(Renewal)_T2-odakyu1000_(Renewal)_T3-odakyu1000_(Renewal)_M4-odakyu1000_(Renewal)_M5-odakyu1000_(Renewal)_TcBack-*
+  odakyu1000_(Renewal-1095F)_TcFront-odakyu1000_(Renewal)_M1-odakyu1000_(Renewal)_T1-odakyu1000_(Renewal)_M2-odakyu1000_(Renewal)_M3-odakyu1000_(Renewal)_T2-odakyu1000_(Renewal)_T3-odakyu1000_(Renewal)_M4-odakyu1000_(Renewal)_M5-odakyu1000_(Renewal)_TcBack-*
+  odakyu1000_(Renewal-1095F)_TcFront-odakyu1000_(Renewal-1095F)_M1-odakyu1000_(Renewal-1095F)_T1-odakyu1000_(Renewal-1095F)_M2-odakyu1000_(Renewal-1095F)_M3-odakyu1000_(Renewal-1095F)_T2-odakyu1000_(Renewal-1095F)_T3-odakyu1000_(Renewal)_M4-odakyu1000_(Renewal)_M5-odakyu1000_(Renewal)_TcBack-*
+  odakyu1000_TcFront-odakyu1000_M1-odakyu1000_(SP)_T1-odakyu1000_(SP)_M2-odakyu1000_(SP)_M3-odakyu1000_(SP)_T2-odakyu1000_(SP)_T3-odakyu1000_(SP)_M4-odakyu1000_(SP)_M5-odakyu1000_TcBack-*
+  odakyu1000_TcFront-odakyu1000_M1-odakyu1000_T1-odakyu1000_M2-odakyu1000_M3-odakyu1000_T2-odakyu1000_T3-odakyu1000_M4-odakyu1000_M5-odakyu1000_TcBack-*
+  odakyu30000(renewal)_TcFront(1st)-odakyu30000(renewal)_M1(2nd)-odakyu30000(renewal)_M2(3rd)-odakyu30000(renewal)_T(4th)-odakyu30000(renewal)_M3(5th)-odakyu30000(renewal)_Tc(6th)-odakyu30000(renewal)_Tc(7th)-odakyu30000(renewal)_M4(8th)-odakyu30000(renewal)_M5(9th)-odakyu30000(renewal)_TcBack(10th)-*
+  odakyu30000_TcFront(1st)-odakyu30000_M1(2nd)-odakyu30000_T1(3rd)-odakyu30000_T2(4th)-odakyu30000_M2(5th)-odakyu30000_Tc(6th)-odakyu30000_Tc(7th)-odakyu30000_M3(8th)-odakyu30000_M4(9th)-odakyu30000_TcBack(10th)-*
+  odakyu3000_(2nd)(type-3)_TcFront-odakyu3000_(2nd)(type-3)_M1-odakyu3000_(2nd)(type-3)_T1-odakyu3000_(2nd)(type-3)_M2-odakyu3000_(2nd)(type-3)_M3-odakyu3000_(2nd)(type-3)_T2-odakyu3000_(2nd)(type-3)_T3-odakyu3000_(2nd)(type-3)_M4-odakyu3000_(2nd)(type-3)_M5-odakyu3000_(2nd)(type-3)_TcBack-*
+  odakyu4000_(2nd)_TcFront-odakyu4000_(2nd)_M1-odakyu4000_(2nd)_M2-odakyu4000_(2nd)_T1-odakyu4000_(2nd)_T2-odakyu4000_(2nd)_M3-odakyu4000_(2nd)_M4-odakyu4000_(2nd)_M5-odakyu4000_(2nd)_M6-odakyu4000_(2nd)_TcBack-*
+  odakyu50000_McFront-odakyu50000_M1-odakyu50000_M2-odakyu50000_M3-odakyu50000_M4-odakyu50000_M5-odakyu50000_M6-odakyu50000_M7-odakyu50000_M8-odakyu50000_McBack-*
+  odakyu5000_(2nd)_TcFront-odakyu5000_(2nd)_M1-odakyu5000_(2nd)_T1-odakyu5000_(2nd)_M2-odakyu5000_(2nd)_M3-odakyu5000_(2nd)_T2-odakyu5000_(2nd)_T3-odakyu5000_(2nd)_M4-odakyu5000_(2nd)_M5-odakyu5000_(2nd)_TcBack-*
+  odakyu60000_TcFront(1st)-odakyu60000_M1(2nd)-odakyu60000_M2(3rd)-odakyu60000_M3(4th)-odakyu60000_M4(5th)-odakyu60000_Tc(6th)-odakyu60000_Tc(7th)-odakyu60000_M5(8th)-odakyu60000_M6(9th)-odakyu60000_TcBack(10th)-*
