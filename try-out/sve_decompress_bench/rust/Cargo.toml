@@ -1,0 +1,15 @@
+[package]
+name = "sve_decompress_bench"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "bench"
+path = "src/main.rs"
+
+[dependencies]
+flate2 = "1"
+bzip2-rs = "0.1"
+
+[profile.release]
+opt-level = 3
